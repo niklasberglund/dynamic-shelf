@@ -2,7 +2,8 @@ shelfCount = 2;
 shelfLength = 800;
 depth = 200;
 height = 400;
-pillarSize = 20;
+horizontalPillarSize = 35;
+verticalPillarSize = 30;
 topSpacing = 20;
 materialThickness = 6;
 
@@ -10,13 +11,14 @@ kerf = 0.2;
 fittingOffset = 0.05;
 fittingPieceWidth = 20;
 spaceBetweenObjects = 20;
+holeRoundingRadius = 8;
 
 fittingHoleDepth = materialThickness + kerf + (fittingOffset * 2);
 fittingHoleLength = fittingPieceWidth + (kerf * 2) + (fittingOffset * 2);
 
 module plotShelf() {
     
-    layerHeight = (height - topSpacing) / (shelfCount + 1);
+    layerHeight = (height - topSpacing) / shelfCount;
     
     module plotSide() {
         module plotFittingHoles() {
@@ -35,10 +37,23 @@ module plotShelf() {
             }
         }
         
+        module plotBottomHole() {
+            holeWidth = depth - (horizontalPillarSize * 2);
+            holeHeight = layerHeight - (horizontalPillarSize/2);
+            
+            translate([horizontalPillarSize, 0]) {
+                minkowski() {
+                    square([holeWidth, holeHeight]);
+                    circle(r=holeRoundingRadius);
+                }
+            }
+        }
+        
         difference() {
             square([depth, height]);
             
             plotFittingHoles();
+            plotBottomHole();
         }
     }
     
