@@ -23,7 +23,7 @@ module plotShelf() {
     module plotSide() {
         module plotFittingHoles() {
             for (i = [1:shelfCount]) {
-                y = ((height - topSpacing)/(shelfCount)) * i;
+                y = ((height - topSpacing)/(shelfCount)) * i - (fittingHoleDepth/2) ;
                 x1 = (depth/3) * 1 - (fittingHoleLength/2);
                 x2 = (depth/3) * 2 - (fittingHoleLength/2);
                 
@@ -54,10 +54,10 @@ module plotShelf() {
         
         module plotShelfLevelHoles() {
             for (i = [1:shelfCount-1]) {
-                y = i * layerHeight + (verticalPillarSize/2) + holeRoundingRadius;
+                y = i * layerHeight + (verticalPillarSize/2) + (holeRoundingRadius/2);
                 
                 holeWidth = depth - (horizontalPillarSize * 2) - (holeRoundingRadius * 2);
-                holeHeight = layerHeight - verticalPillarSize - (holeRoundingRadius * 2);
+                holeHeight = layerHeight - verticalPillarSize - (holeRoundingRadius);
                 
                 translate([horizontalPillarSize + holeRoundingRadius, y]) {
                     minkowski() {
