@@ -78,7 +78,7 @@ module plotShelf() {
     }
     
     module plotAllLayers() {
-        for (i = [0:shelfCount]) {
+        for (i = [0:shelfCount-1]) {
             y = i * (depth + spaceBetweenObjects);
             translate([0, y]) {
                 plotLayer();
