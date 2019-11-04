@@ -39,7 +39,7 @@ module plotShelf() {
         }
         
         module plotShelfLevelHoles() {
-            for (i = [1:shelfCount-1]) {
+            for (i = [0:shelfCount-1]) {
                 y = i * layerHeight + (verticalPillarSize/2) + (holeRoundingRadius/2);
                 
                 holeWidth = depth - (horizontalPillarSize * 2) - (holeRoundingRadius * 2);
