@@ -13,8 +13,8 @@ fittingPieceWidth = 20;
 spaceBetweenObjects = 20;
 holeRoundingRadius = 8;
 
-fittingHoleDepth = materialThickness + kerf + (fittingOffset * 2);
-fittingHoleLength = fittingPieceWidth + (kerf * 2) + (fittingOffset * 2);
+fittingHoleDepth = materialThickness - kerf + (fittingOffset * 2);
+fittingHoleLength = fittingPieceWidth - (kerf * 2) + (fittingOffset * 2);
 
 module plotShelf() {
     
