@@ -37,21 +37,6 @@ module plotShelf() {
             }
         }
         
-        module plotBottomHole() {
-            holeWidth = depth - (horizontalPillarSize * 2) - (holeRoundingRadius*2);
-            holeHeight = layerHeight - (verticalPillarSize/2) + (fittingHoleDepth/2) - (holeRoundingRadius*2) + holeRoundingRadius*2;
-            
-            translate([horizontalPillarSize, -holeRoundingRadius*2]) {
-                minkowski() {
-                    square([holeWidth, holeHeight]);
-                    
-                    translate([holeRoundingRadius, holeRoundingRadius]) {
-                        circle(r=holeRoundingRadius);
-                    }
-                }
-            }
-        }
-        
         module plotShelfLevelHoles() {
             for (i = [1:shelfCount-1]) {
                 y = i * layerHeight + (verticalPillarSize/2) + (holeRoundingRadius/2);
@@ -72,7 +57,6 @@ module plotShelf() {
             square([depth, height]);
             
             plotFittingHoles();
-            plotBottomHole();
             plotShelfLevelHoles();
         }
     }
