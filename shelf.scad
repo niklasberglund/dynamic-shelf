@@ -8,7 +8,7 @@ topSpacing = 20;
 materialThickness = 6;
 
 kerf = 0.2;
-fittingOffset = 0.05;
+fittingOffset = 0.02;
 fittingPieceWidth = 20;
 spaceBetweenObjects = 20;
 holeRoundingRadius = 8;
