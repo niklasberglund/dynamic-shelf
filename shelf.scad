@@ -19,6 +19,7 @@ fittingHoleLength = fittingPieceWidth + (kerf * 2) + (fittingOffset * 2);
 module plotShelf() {
     
     layerHeight = (height - topSpacing) / shelfCount;
+    echo("Shelf height(millimeters)", layerHeight);
     
     module plotSide() {
         module plotFittingHoles() {
