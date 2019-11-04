@@ -1,7 +1,7 @@
 shelfCount = 2;
-shelfLength = 800;
-depth = 200;
-height = 400;
+shelfLength = 690;
+depth = 170;
+height = 430;
 horizontalPillarSize = 35;
 verticalPillarSize = 30;
 topSpacing = 20;
