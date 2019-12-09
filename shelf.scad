@@ -116,7 +116,7 @@ module plotShelf() {
             }
         }
         
-        square([shelfLength, depth]);
+        square([shelfLength, shelfDepth]);
         
         plotLayerFittingPieces();
     }
