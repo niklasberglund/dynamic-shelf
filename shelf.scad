@@ -31,8 +31,8 @@ module plotShelf() {
         module plotFittingHoles() {
             for (i = [1:shelfCount]) {
                 y = ((height - topSpacing)/(shelfCount)) * i - (fittingHoleDepth/2);
-                x1 = (shelfDepth/3) * 1 - (fittingHoleLength/2);
-                x2 = (shelfDepth/3) * 2 - (fittingHoleLength/2);
+                x1 = (depth/3) * 1 - (fittingHoleLength/2);
+                x2 = (depth/3) * 2 - (fittingHoleLength/2);
                 
                 translate([x1, y]) {
                     square([fittingHoleLength, fittingHoleDepth]);
