@@ -47,8 +47,10 @@ module plotShelf() {
         module plotStabilizerFittingHoles() {
             for (i = [1:shelfCount]) {
                 x = depth - stabilizerFittingHoleDepth;
-                y1 = ((height - topSpacing)/(shelfCount)) * i - (materialThickness/2) - (stabilizerHeight/3) * 1;;
-                y2 = ((height - topSpacing)/(shelfCount)) * i - (materialThickness/2) - (stabilizerHeight/3) * 2;
+                
+                yBase = ((height - topSpacing)/(shelfCount)) * i - (fittingHoleDepth/2);
+                y1 = yBase - (stabilizerHeight/3) * 1;
+                y2 = yBase - (stabilizerHeight/3) * 2;
                 
                 translate([x, y1]) {
                     square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
@@ -57,6 +59,8 @@ module plotShelf() {
                 translate([x, y2]) {
                     square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
                 }
+                
+                //translate([x, yBase - stabilizerHeight]) square([stabilizerFittingHoleDepth, stabilizerHeight]);
             }
         }
         
@@ -116,7 +120,7 @@ module plotShelf() {
             }
         }
         
-        square([shelfLength, shelfDepth]);
+        square([shelfLength, depth]);
         
         plotLayerFittingPieces();
     }
