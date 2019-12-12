@@ -64,6 +64,22 @@ module plotShelf() {
             }
         }
         
+        // Fitting holes for stabilizer against the surface the shelf is standing on
+        module plotBottomStabilizerFittingHoles() {
+            x = depth - stabilizerFittingHoleDepth;
+            
+            y1 =  (stabilizerHeight/3) * 1;
+            y2 =  (stabilizerHeight/3) * 2;
+            
+            translate([x, y1]) {
+                square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
+            }
+            
+            translate([x, y2]) {
+                square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
+            }
+        }
+        
         module plotShelfLevelHoles() {
             for (i = [0:shelfCount-1]) {
                 y = i * layerHeight + (verticalPillarSize/2) + (holeRoundingRadius/2);
@@ -85,6 +101,7 @@ module plotShelf() {
             
             plotFittingHoles();
             plotStabilizerFittingHoles();
+            plotBottomStabilizerFittingHoles();
             plotShelfLevelHoles();
         }
     }
@@ -126,7 +143,7 @@ module plotShelf() {
     }
     
     module plotAllStabilizers() {
-        for (i = [0:shelfCount-1]) {
+        for (i = [0:shelfCount]) {
             y = i * (stabilizerHeight + spaceBetweenObjects);
             translate([0, y]) {
                 plotStabilizer();
