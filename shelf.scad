@@ -49,8 +49,8 @@ module plotShelf() {
                 x = depth - stabilizerFittingHoleDepth;
                 
                 yBase = ((height - topSpacing)/(shelfCount)) * i - (fittingHoleDepth/2);
-                y1 = yBase - (stabilizerHeight/3) * 1;
-                y2 = yBase - (stabilizerHeight/3) * 2;
+                y1 = yBase - (stabilizerHeight/3) * 1 - ((stabilizerFittingHoleLength/2));
+                y2 = yBase - (stabilizerHeight/3) * 2 - (stabilizerFittingHoleLength/2);
                 
                 translate([x, y1]) {
                     square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
@@ -60,7 +60,7 @@ module plotShelf() {
                     square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
                 }
                 
-                //translate([x, yBase - stabilizerHeight]) square([stabilizerFittingHoleDepth, stabilizerHeight]);
+                //translate([x-20, yBase - stabilizerHeight]) square([stabilizerFittingHoleDepth, stabilizerHeight]);
             }
         }
         
@@ -68,8 +68,8 @@ module plotShelf() {
         module plotBottomStabilizerFittingHoles() {
             x = depth - stabilizerFittingHoleDepth;
             
-            y1 =  (stabilizerHeight/3) * 1;
-            y2 =  (stabilizerHeight/3) * 2;
+            y1 =  (stabilizerHeight/3) * 1 - (stabilizerFittingHoleLength/2);
+            y2 =  (stabilizerHeight/3) * 2 - (stabilizerFittingHoleLength/2);
             
             translate([x, y1]) {
                 square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
