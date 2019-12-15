@@ -180,19 +180,71 @@ module plotShelf() {
         }
     }
     
-    plotSide();
+    // Minimal test pieces for trying out the press fit before laser cutting the whole thing
+    module plotFittingTestPieces() {
+        module plotFemaleTestPiece() {
+            difference() {
+                pieceOffset = 10;
+                femalePieceWidth = pieceOffset + fittingHoleLength + pieceOffset +  stabilizerFittingHoleDepth + pieceOffset;
+                femalePieceHeight = pieceOffset + stabilizerFittingHoleLength + pieceOffset;
+                
+                square([femalePieceWidth, femalePieceHeight]);
+                
+                translate([pieceOffset, pieceOffset]) square([fittingHoleLength, fittingHoleDepth]);
+                
+                stabilizerFittingX = pieceOffset + fittingHoleLength + pieceOffset;
+                translate([stabilizerFittingX, pieceOffset]) square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
+            }
+        }
+        
+        module plotMaleTestPiece() {
+            bottomPieceOffset = 20;
+            sidePieceOffset = 10;
+            malePieceWidth = bottomPieceOffset + fittingHoleLength + bottomPieceOffset - stabilizerFittingHoleDepth;
+            malePieceHeight = sidePieceOffset * 2 + stabilizerFittingHoleLength - fittingHoleDepth;
+            
+            translate([stabilizerFittingHoleDepth, 0]) {
+                square([malePieceWidth, malePieceHeight]);
+            }
+            
+            translate([0, 5]) {
+                square([stabilizerFittingHoleDepth, stabilizerFittingHoleLength]);
+            }
+            
+            translate([20, -fittingHoleDepth]) {
+                square([fittingHoleLength, fittingHoleDepth]);
+            }
+        }
+        
+        plotFemaleTestPiece();
+        
+        translate([0, 40]) {
+            plotMaleTestPiece();
+        }
+    }
     
-    translate([depth + spaceBetweenObjects, 0]) {
+    module plotAllShelfPieces() {    
         plotSide();
         
         translate([depth + spaceBetweenObjects, 0]) {
-            plotAllLayers();
+            plotSide();
             
-            translate([shelfLength + fittingHoleDepth * 2 + spaceBetweenObjects, 0]) {
-                plotAllStabilizers();
+            translate([depth + spaceBetweenObjects, 0]) {
+                plotAllLayers();
+                
+                translate([shelfLength + fittingHoleDepth * 2 + spaceBetweenObjects, 0]) {
+                    plotAllStabilizers();
+                }
             }
         }
     }
+    
+    // ### IMPORTANT NOTE ###
+    // I'd recommend you to first cut out the test pieces to try out the press fit. 
+    // You might have to adjust kerf variable if you're not achieving a good press fit.
+    // To do so comment out plotAllShelfPieces() and uncomment plotFittingTestPieces() below
+    plotAllShelfPieces();
+    //plotFittingTestPieces();
 }
 
 plotShelf();
